@@ -34,7 +34,7 @@ class SqsFifo {
         .then(this.validate)
         .then(this.create)
         .then(this.decorate),
-      'before:deploy:remove': () => 
+      'after:remove:remove': () => 
         BbPromise.bind(this)
         .then(this.validate)
         .then(this.remove),

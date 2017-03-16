@@ -1,6 +1,6 @@
 {
   "name": "serverless-sqs-fifo",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Augmenting support for SQS Fifo Queue's with Serverless",
   "main": "index.js",
   "scripts": {
@@ -45,6 +45,7 @@
     "aws-sdk": "^2.22.0",
     "bluebird": "^3.4.6",
     "eslint-plugin-import": "^2.2.0",
-    "fs-extra": "^1.0.0"
+    "fs-extra": "^1.0.0",
+    "traverse": "^0.6.6"
   }
 }
