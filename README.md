@@ -39,7 +39,7 @@ custom:
           MessageRetentionPeriod: 1209600
           ReceiveMessageWaitTimeSeconds: 20
           RedrivePolicy:
-            deadLetterTargetArn: custom.sqs.queues.deaLetterQueue.arn
+            deadLetterTargetArn: custom.sqs.queues.deadLetterQueue
             maxReceiveCount: 2
           VisibilityTimeout: 170
 provider:
