@@ -4,7 +4,7 @@
 Setups up SQS fifo queues - at the time of this writing cloud formation does not support them, so serverless does not support them.  This is considered a stop gap until cloudformation provides support.
 
 ## Usage
-Add the yaml to create the queues in custom.sqs.queues, then reference the queue arn & url via the <logical_name>.<url|arn>, as below with `custom.sqs.queues.deaLetterQueue.arn`, `custom.sqs.queues.deaLetterQueue.url`, `custom.sqs.queues.applicationQueue.arn`, `custom.sqs.queues.applicationQueue.url`.  The queue's are created in the order they are specified and deleted in the reverse order they are specified.  This is important for depdenencies.  The below example includes a modified s3 crypt mod from github.com/vortarian/serverless-crypt
+Add the yaml to create the queues in custom.sqs.queues, then reference the queue arn & url via the `<logical_name>.<url|arn>`, as below with `custom.sqs.queues.deadLetterQueue.arn`, `custom.sqs.queues.deadLetterQueue.url`, `custom.sqs.queues.applicationQueue.arn`, `custom.sqs.queues.applicationQueue.url`.  The queue's are created in the order they are specified and deleted in the reverse order they are specified.  This is important for depdenencies.  The below example includes a modified s3 crypt mod from github.com/vortarian/serverless-crypt
 
 ```
 plugins:
@@ -39,7 +39,7 @@ custom:
           MessageRetentionPeriod: 1209600
           ReceiveMessageWaitTimeSeconds: 20
           RedrivePolicy:
-            deadLetterTargetArn: custom.sqs.queues.deaLetterQueue.arn
+            deadLetterTargetArn: custom.sqs.queues.deadLetterQueue.arn
             maxReceiveCount: 2
           VisibilityTimeout: 170
 provider:
@@ -82,7 +82,7 @@ provider:
         - "sqs:SendMessageBatch"
       Resource:
         - custom.sqs.queues.applicationQueue.arn
-        - custom.sqs.queues.deadapplicationQueue.arn
+        - custom.sqs.queues.deadLetterQueue.arn
 
 
 functions:
